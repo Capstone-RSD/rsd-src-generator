@@ -28,7 +28,7 @@ jobs:
       
       # Setup CMake
       - name: Get Cmake
-      - uses: lukka/get-cmake@arm64-win-linux
+        uses: lukka/get-cmake@arm64-win-linux
       
       # Setup Python
       - name: Setup Python
