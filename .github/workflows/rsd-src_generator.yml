@@ -60,7 +60,7 @@ jobs:
               
       - name: Install protobuf library
         run: |
-              cd build && sudo make -j20 install
+              cd ./protobuf/build && sudo make -j20 install
               sudo ldconfig
               protoc --version
               
