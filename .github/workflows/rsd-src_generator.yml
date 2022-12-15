@@ -65,7 +65,6 @@ jobs:
               protoc --version
               cd protobuf/python
               sudo python setup.py build
-              sudo python setup.py test
               sudo python setup.py install 
       
       # Generate for python
