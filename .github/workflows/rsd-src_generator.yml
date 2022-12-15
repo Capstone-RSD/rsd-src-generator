@@ -56,7 +56,7 @@ jobs:
               git submodule update --init --recursive
               mkdir build
               cmake -S . -B build -Dprotobuf_BUILD_TESTS=OFF  -DCMAKE_BUILD_TYPE=Release
-              cmake --build ./build --j40
+              cmake --build ./build --parallel 20
               cmake --install ./build -v
       - name: Build & Install for Python
         run: |
