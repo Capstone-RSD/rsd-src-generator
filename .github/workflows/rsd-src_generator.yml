@@ -55,9 +55,9 @@ jobs:
               cd protobuf
               git submodule update --init --recursive
               mkdir build
-              cmake -S . -B build -Dprotobuf_BUILD_TESTS=OFF  -DCMAKE_BUILD_TYPE=Release
+              cmake -S . -B build -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_BUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release
               cmake --build ./build --parallel 20              
-              cd build && make -j20 install
+              cd build && sudo make -j20 install
       - name: Build & Install for Python
         run: |
               protoc --version
