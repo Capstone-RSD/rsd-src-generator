@@ -38,7 +38,8 @@ jobs:
       - name: Setup Java JDK
         uses: actions/setup-java@v3.9.0
         with:
-          distribution: jdk
+          distribution: 'adopt'
+          java-version: '17'
 
 # Resource: https://lukasjoswiak.com/github-actions-protobuf/
       - name: Cache protobuf library
