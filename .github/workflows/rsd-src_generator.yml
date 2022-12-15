@@ -64,7 +64,7 @@ jobs:
         run: |           
               protoc --version
               cd protobuf/python
-              sudo python setup.py build
+              sudo python setup.py build --cpp_implementation
               sudo python setup.py install 
       
       # Generate for python
@@ -85,7 +85,13 @@ jobs:
       - name: Upload generated artifacts
         uses: actions/upload-artifact@v3.1.1
         with: 
-          name: protobuf-rsd-gen
+          name: rsd-java-src
           path: |
-                ${{github.workspace}}/protobuf-rsd-gen
-                ${{github.workspace}}
+                ${{github.workspace}}/protobuf-rsd-gen/java-src
+       # Upload artifacts
+      - name: Upload generated artifacts
+        uses: actions/upload-artifact@v3.1.1
+        with: 
+          name: rsd-python-gen
+          path: |
+                ${{github.workspace}}/protobuf-rsd-gen/py-src
