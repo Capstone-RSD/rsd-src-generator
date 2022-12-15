@@ -34,12 +34,12 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4.3.1
       
-      # Setup Java
-      - name: Setup Java JDK
-        uses: actions/setup-java@v3.9.0
-        with:
-          distribution: 'adopt'
-          java-version: '17'
+#       # Setup Java
+#       - name: Setup Java JDK
+#         uses: actions/setup-java@v3.9.0
+#         with:
+#           distribution: 'adopt'
+#           java-version: '17'
 
 # Resource: https://lukasjoswiak.com/github-actions-protobuf/
       - name: Cache protobuf library
