@@ -57,14 +57,18 @@ jobs:
               mkdir build
               cmake -S . -B build -Dprotobuf_BUILD_TESTS=OFF -DBUILD_SHARED_LIBS=OFF -DCMAKE_BUILD_TYPE=Release
               cmake --build ./build --parallel 20              
+              
+      - name: Install protobuf library
+        run: |
               cd build && sudo make -j20 install
               sudo ldconfig
+              protoc --version
               
       - name: Build & Install for Python
         run: |           
               protoc --version
               cd protobuf/python
-              sudo python setup.py build --cpp_implementation
+              sudo python setup.py build 
               sudo python setup.py install 
       
       # Generate for python
