@@ -57,7 +57,7 @@ jobs:
               mkdir build
               cmake -S . -B build -Dprotobuf_BUILD_TESTS=OFF  -DCMAKE_BUILD_TYPE=Release
               cmake --build ./build --parallel 20
-              cmake --install ./build -v
+              cd build && sudo make install
       - name: Build & Install for Python
         run: |
               sudo ldconfig
