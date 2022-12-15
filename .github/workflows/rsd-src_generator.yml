@@ -55,7 +55,7 @@ jobs:
               cd protobuf
               git submodule update --init --recursive
               mkdir build
-              cmake -S . -B build -Dprotobuf_BUILD_TESTS=OFF -DCMAKE_BUILD_TYPE=Release
+              cmake -S . -B build -Dprotobuf_BUILD_TESTS=OFF -DBUILD_SHARED_LIBS=OFF -DCMAKE_BUILD_TYPE=Release
               cmake --build ./build --parallel 20              
               cd build && sudo make -j20 install
               sudo ldconfig
@@ -64,9 +64,9 @@ jobs:
         run: |           
               protoc --version
               cd protobuf/python
-              python setup.py build --cpp_implementation
-              python setup.py test
-              python setup.py install --cpp_implementation
+              sudo python setup.py build --cpp_implementation
+              sudo python setup.py test
+              sudo python setup.py install --cpp_implementation
       
       # Generate for python
       - name: Generate python source code
