@@ -37,6 +37,8 @@ jobs:
       # Setup Java
       - name: Setup Java JDK
         uses: actions/setup-java@v3.9.0
+        with:
+          distribution: jdk
 
 # Resource: https://lukasjoswiak.com/github-actions-protobuf/
       - name: Cache protobuf library
@@ -48,11 +50,11 @@ jobs:
       - name: Build protobuf library
         if: steps.cache-protobuf.outputs.cache-hit != 'true'
         run: |
-            git clone https://github.com/protocolbuffers/protobuf.git
-            cd protobuf
-            git submodule update --init --recursive
-            cmake --build . -D protobuf_BUILD_TESTS=OFF --parallel 10
-            cmake --install .
+              git clone https://github.com/protocolbuffers/protobuf.git
+              cd protobuf
+              git submodule update --init --recursive
+              cmake --build . -D protobuf_BUILD_TESTS=OFF --parallel 10
+              cmake --install .
       - name: Build & Install for Python
         run: |
               sudo ldconfig
