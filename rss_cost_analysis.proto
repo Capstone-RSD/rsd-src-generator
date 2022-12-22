@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package RSS;// RSS=Road Surface Status
+
+// Resource: https://github.com/protocolbuffers/protobuf/blob/main/examples/addressbook.proto
+
+// Imports
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/date.proto";
+import "google/protobuf/money.proto";
+// import "google/protobuf/duration.proto";
+
+import "rss_client.proto";
+
+
+// [START global_declaration]
+option optimize_for = SPEED; // Enabled by default
+// [END global_declaration]
+
+
+// [START java_declaration]
+option java_multiple_files = true; // enables generating a separate .java file for each generated class
+option java_package = "com.example.rss";
+// option java_outer_classname = "RSD";
+// [END java_declaration]
+
+message CostEstimation {
+  string name = 1;
+  int32 id = 2;
+  string email = 3;
+
+  /* Represents the amount required to fix the road damage  */
+  required google.protobuf.Money repair_cost = 4;
+  required bool is_repaired = 5 [default = false];
+  required int32 report_count=6;
+
+  /* Estimated date the repair cost was created */
+  google.protobuf.Date date_of_estimation = 7;
+  google.protobuf.Timestamp time_of_estimation = 8;
+  google.protobuf.Date repair_deadline = 9;
+
+
+    /* The road damage dimensions determined in length, width, and depth of the damage on the road */
+    message DamageDimension {
+        required double length = 1;
+        required double width = 2;
+        optional double depth = 3;
+    }
+
+    required DamageDimensions damage_dims = 10;
+    optional LatLng location = 11;
+}
+
