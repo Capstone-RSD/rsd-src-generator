@@ -24,20 +24,19 @@ option java_package = "com.example.rss";
 // option java_outer_classname = "RSD";
 // [END java_declaration]
 
-message CostEstimation {
-  string name = 1;
-  int32 id = 2;
-  string email = 3;
+message CostEstimationReport {
+  int32 id = 1;
 
   /* Represents the amount required to fix the road damage  */
-  required google.protobuf.Money repair_cost = 4;
-  required bool is_repaired = 5 [default = false];
-  required int32 report_count=6;
+  required google.protobuf.Money repair_cost = 2;
+  required bool is_repaired = 3 [default = false];
+  required int32 report_count=4;
+  required DamageDimensions damage_dims = 5;
 
   /* Estimated date the repair cost was created */
-  google.protobuf.Date date_of_estimation = 7;
-  google.protobuf.Timestamp time_of_estimation = 8;
-  google.protobuf.Date repair_deadline = 9;
+  google.protobuf.Date date_of_estimation = 6;
+  google.protobuf.Timestamp time_of_estimation = 7;
+  google.protobuf.Date est_repair_deadline = 8;
 
 
     /* The road damage dimensions determined in length, width, and depth of the damage on the road */
@@ -47,7 +46,12 @@ message CostEstimation {
         optional double depth = 3;
     }
 
-    required DamageDimensions damage_dims = 10;
-    optional LatLng location = 11;
-}
+    optional Client.DamageLocation location = 9;
 
+    optional enum ReportFormat{
+        NONE = 1;
+        PDF =2;
+        CSV = 3;
+        JSON = 4;
+    }
+}

@@ -8,6 +8,8 @@ package RSS;// RSS=Road Surface Status
 // Resource: https://developers.google.com/protocol-buffers/docs/overview#common-types
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/date.proto";
+import "google/protobuf/latlng.proto";
+import "google/protobuf/postal_address.proto";
 
 // [START global_declaration]
 option optimize_for = SPEED; // Enabled by default
@@ -26,9 +28,10 @@ message Client {
   optional int32 id = 2;
   optional string email = 3;
 
+  /* Latitude and Longitude of the captured road surface damage */
   message DamageLocation{
-    required LatLng lat_lng = 1;
-    optional string street = 2;
+    required google.protobuf.LatLng lat_lng = 1;
+    optional google.protobuf.PostalAddress address = 2;
   }
 
   int32 speed = 6;
@@ -41,11 +44,6 @@ message Client {
   map<string,BlobSrc> blob_map = 8;
 }
 
-/* Latitude and Longitude of the captured road surface damage */
-message LatLng {
-    required float lat = 1;
-    required float lng = 2;
-  }
 
 /* Represets the blob and its parameters. */
 message BlobSrc {
@@ -59,6 +57,3 @@ message BlobSrc {
     string video = 5;
   }
 }
-
-
-

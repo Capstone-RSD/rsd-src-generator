@@ -24,7 +24,7 @@ message RSSPayload {
   // optional string email = 3;
   // google.protobuf.Timestamp DateOfBirth = 4;
 
-  optionalenum DamageLevel {
+  optional enum DamageLevel {
     LVL_UNSPECIFIED = 0;
     LVL_LOW = 1;
     LVL_MED = 2;
