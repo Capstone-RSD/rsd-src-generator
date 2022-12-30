@@ -48,10 +48,11 @@ jobs:
         with:
           path: protobuf
           key: ${{ runner.os }}-protobuf
-      - name: Build protobuf library
+      - name: Build protobuf library and clone googleapi proto types
         if: steps.cache-protobuf.outputs.cache-hit != 'true'
         run: |
               git clone https://github.com/protocolbuffers/protobuf.git
+              git clone https://github.com/googleapis/api-common-protos.git
               cd protobuf
               git submodule update --init --recursive
               mkdir build
@@ -69,14 +70,14 @@ jobs:
               protoc --version
               cd protobuf/python
               sudo python setup.py build
-              sudo python setup.py install
+              sudo python setup.py install              
 
       # Generate for python
       - name: Generate python source code
         run: |
               ls -al
               mkdir -p protobuf-rsd-gen/py-src
-              protoc --proto_path=. --python_out=protobuf-rsd-gen/py-src rss_client.proto,rss_cost_analysis.proto,rss_payload.proto
+              protoc --proto_path=${{github.workspace}} -I=${{github.workspace}}/api-common-protos --python_out=protobuf-rsd-gen/py-src ${{github.workspace}}/*.proto
 
 
       # Generate for Java using protobuf java-lite
@@ -84,7 +85,7 @@ jobs:
         run: |
               ls -al
               mkdir -p protobuf-rsd-gen/java-src
-              protoc --java_out=protobuf-rsd-gen/java-src rss_client.proto
+              protoc --java_out=protobuf-rsd-gen/java-src -I=${{github.workspace}}/api-common-protos rss_client.proto
       # Upload artifacts
       - name: Upload generated artifacts
         uses: actions/upload-artifact@v3.1.1
