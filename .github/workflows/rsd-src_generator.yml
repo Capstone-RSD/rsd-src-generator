@@ -76,7 +76,7 @@ jobs:
         run: |
               ls -al
               mkdir -p protobuf-rsd-gen/py-src
-              protoc --proto_path=. --python_out=protobuf-rsd-gen/py-src rss_client.proto,rss_cost_analysis.proto,rss_payload.proto
+              protoc --proto_path=. --python_out=protobuf-rsd-gen/py-src ${{github.workspace}}/*.proto
 
 
       # Generate for Java using protobuf java-lite
