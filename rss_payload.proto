@@ -6,7 +6,6 @@ package RSS;// RSS=Road Surface Status
 
 // Imports
 import "google/protobuf/timestamp.proto";
-
 import "rss_cost_analysis.proto";
 
 // [START global_declaration]

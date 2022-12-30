@@ -6,8 +6,8 @@ package RSS;// RSS=Road Surface Status
 
 // Imports
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/date.proto";
-import "google/protobuf/money.proto";
+import "google/type/date.proto";
+import "google/type/money.proto";
 // import "google/protobuf/duration.proto";
 
 import "rss_client.proto";
@@ -28,21 +28,21 @@ message CostEstimationReport {
   int32 id = 1;
 
   /* Represents the amount required to fix the road damage  */
-  required google.protobuf.Money repair_cost = 2;
-  required bool is_repaired = 3 [default = false];
-  required int32 report_count=4;
+  required google.type.Money repair_cost = 2;
+  bool is_repaired = 3;
+  int32 report_count=4;
   required DamageDimensions damage_dims = 5;
 
   /* Estimated date the repair cost was created */
-  google.protobuf.Date date_of_estimation = 6;
-  google.protobuf.Timestamp time_of_estimation = 7;
-  google.protobuf.Date est_repair_deadline = 8;
+  google.type.Date date_of_estimation = 6;
+  google.type.Timestamp time_of_estimation = 7;
+  google.type.Date est_repair_deadline = 8;
 
 
     /* The road damage dimensions determined in length, width, and depth of the damage on the road */
     message DamageDimension {
-        required double length = 1;
-        required double width = 2;
+        double length = 1;
+        double width = 2;
         optional double depth = 3;
     }
 

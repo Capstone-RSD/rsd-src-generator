@@ -7,9 +7,9 @@ package RSS;// RSS=Road Surface Status
 // Imports
 // Resource: https://developers.google.com/protocol-buffers/docs/overview#common-types
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/date.proto";
-import "google/protobuf/latlng.proto";
-import "google/protobuf/postal_address.proto";
+import "google/type/date.proto";
+import "google/type/latlng.proto";
+import "google/type/postal_address.proto";
 
 // [START global_declaration]
 option optimize_for = SPEED; // Enabled by default
@@ -18,7 +18,7 @@ option optimize_for = SPEED; // Enabled by default
 
 // [START java_declaration]
 option java_multiple_files = true; // enables generating a separate .java file for each generated class
-// option java_package = "com.example.rss";
+option java_package = "com.example.rss";
 // option java_outer_classname = "RSD";
 // [END java_declaration]
 
@@ -30,8 +30,8 @@ message Client {
 
   /* Latitude and Longitude of the captured road surface damage */
   message DamageLocation{
-    google.protobuf.LatLng lat_lng = 1;
-    google.protobuf.PostalAddress address = 2;
+    google.type.LatLng lat_lng = 1;
+    google.type.PostalAddress address = 2;
   }
 
   int32 speed = 6;
@@ -48,7 +48,7 @@ message Client {
 /* Represets the blob and its parameters. */
 message BlobSrc {
   string blob_url = 1; // URL to the blobs location. i.e. the url to the s3 bucket it is stored in
-  google.protobuf.Date date_created = 2; // Date blob was created
+  google.type.Date date_created = 2; // Date blob was created
   google.protobuf.Timestamp time_created = 3; // Time the blob was created
 
   /* A blob type represented as either an image or video. */
