@@ -28,10 +28,10 @@ message CostEstimationReport {
   int32 id = 1;
 
   /* Represents the amount required to fix the road damage  */
-  required google.type.Money repair_cost = 2;
+  google.type.Money repair_cost = 2;
   bool is_repaired = 3;
   int32 report_count=4;
-  required DamageDimension damage_dims = 5;
+  DamageDimension damage_dims = 5;
 
   /* Estimated date the repair cost was created */
   google.type.Date date_of_estimation = 6;
