@@ -48,10 +48,10 @@ message CostEstimationReport {
 
     optional Client.DamageLocation location = 9;
 
-    optional enum ReportFormat{
-        NONE = 1;
-        PDF =2;
-        CSV = 3;
-        JSON = 4;
+    enum ReportFormat{
+        NONE = 0;
+        PDF =1;
+        CSV = 2;
+        JSON = 3;
     }
 }

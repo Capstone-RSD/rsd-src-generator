@@ -25,15 +25,15 @@ jobs:
       - name: Checkout Repository
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         uses: actions/checkout@v3
-      
+
       # Setup CMake
       - name: Get Cmake
         uses: lukka/get-cmake@arm64-win-linux
-      
+
       # Setup Python
       - name: Setup Python
         uses: actions/setup-python@v4.3.1
-      
+
 #       # Setup Java
 #       - name: Setup Java JDK
 #         uses: actions/setup-java@v3.9.0
@@ -56,46 +56,46 @@ jobs:
               git submodule update --init --recursive
               mkdir build
               cmake -S . -B build -Dprotobuf_BUILD_TESTS=OFF -DBUILD_SHARED_LIBS=OFF -DCMAKE_BUILD_TYPE=Release
-              cmake --build ./build --parallel 20              
-              
+              cmake --build ./build --parallel 20
+
       - name: Install protobuf library
         run: |
               cd ./protobuf/build && sudo make -j20 install
               sudo ldconfig
               protoc --version
-              
+
       - name: Build & Install for Python
-        run: |           
+        run: |
               protoc --version
               cd protobuf/python
-              sudo python setup.py build 
-              sudo python setup.py install 
-      
+              sudo python setup.py build
+              sudo python setup.py install
+
       # Generate for python
       - name: Generate python source code
         run: |
               ls -al
               mkdir -p protobuf-rsd-gen/py-src
-              protoc --proto_path=. --python_out=protobuf-rsd-gen/py-src person.proto
-              
-      
+              protoc --proto_path=. --python_out=protobuf-rsd-gen/py-src rss_client.proto,rss_cost_analysis.proto,rss_payload.proto
+
+
       # Generate for Java using protobuf java-lite
       - name: Generate java source code
         run: |
               ls -al
               mkdir -p protobuf-rsd-gen/java-src
-              protoc --java_out=protobuf-rsd-gen/java-src person.proto
+              protoc --java_out=protobuf-rsd-gen/java-src rss_client.proto
       # Upload artifacts
       - name: Upload generated artifacts
         uses: actions/upload-artifact@v3.1.1
-        with: 
+        with:
           name: rsd-java-src
           path: |
                 ${{github.workspace}}/protobuf-rsd-gen/java-src
        # Upload artifacts
       - name: Upload generated artifacts
         uses: actions/upload-artifact@v3.1.1
-        with: 
+        with:
           name: rsd-python-gen
           path: |
                 ${{github.workspace}}/protobuf-rsd-gen/py-src
