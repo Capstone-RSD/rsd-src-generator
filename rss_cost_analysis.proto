@@ -31,11 +31,11 @@ message CostEstimationReport {
   required google.type.Money repair_cost = 2;
   bool is_repaired = 3;
   int32 report_count=4;
-  required DamageDimensions damage_dims = 5;
+  required DamageDimension damage_dims = 5;
 
   /* Estimated date the repair cost was created */
   google.type.Date date_of_estimation = 6;
-  google.type.Timestamp time_of_estimation = 7;
+  google.protobuf.Timestamp time_of_estimation = 7;
   google.type.Date est_repair_deadline = 8;
 
 
