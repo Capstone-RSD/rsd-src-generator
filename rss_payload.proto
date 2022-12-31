@@ -42,8 +42,8 @@ enum DamageLevel {
   }
 
  enum RepairPriority {
-    LVL_UNSPECIFIED = 0;
-    LVL_LOW = 1;
-    LVL_MED = 2;
-    LVL_HIGH = 3;
+    PRIORITY_UNSPECIFIED = 0;
+    PRIORITY_LOW = 1;
+    PRIORITY_MED = 2;
+    PRIORITY_HIGH = 3;
   }
