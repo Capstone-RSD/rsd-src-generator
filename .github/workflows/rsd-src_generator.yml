@@ -60,11 +60,12 @@ jobs:
 
       - name: Install protobuf library
         run: |
+              git clone https://github.com/googleapis/api-common-protos.git
               cd ./protobuf/build && sudo make -j20 install
               sudo ldconfig
               protoc --version
               ls -al
-              git clone https://github.com/googleapis/api-common-protos.git
+             
 
       - name: Build & Install for Python
         run: |
