@@ -83,8 +83,8 @@ jobs:
       # Generate for Java using protobuf java-lite
       - name: Generate java source code
         run: |
-              ls -al
               mkdir -p protobuf-rsd-gen/java-src
+              ls -al
               protoc --proto_path=${{github.workspace}} -I=${{github.workspace}}/api-common-protos --java_out=protobuf-rsd-gen/java-src rss_client.proto
       # Upload artifacts
       - name: Upload generated artifacts
