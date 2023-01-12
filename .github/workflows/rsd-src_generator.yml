@@ -52,7 +52,6 @@ jobs:
         if: steps.cache-protobuf.outputs.cache-hit != 'true'
         run: |
               git clone https://github.com/protocolbuffers/protobuf.git
-              git clone https://github.com/googleapis/api-common-protos.git
               cd protobuf
               git submodule update --init --recursive
               mkdir build
@@ -64,6 +63,8 @@ jobs:
               cd ./protobuf/build && sudo make -j20 install
               sudo ldconfig
               protoc --version
+              ls -al
+              git clone https://github.com/googleapis/api-common-protos.git
 
       - name: Build & Install for Python
         run: |
