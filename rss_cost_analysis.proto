@@ -43,10 +43,10 @@ message CostEstimationReport {
     message DamageDimension {
         double length = 1;
         double width = 2;
-        optional double depth = 3;
+        double depth = 3;
     }
 
-    optional Client.DamageLocation location = 9;
+    Client.DamageLocation location = 9;
 
     enum ReportFormat{
         NONE = 0;
