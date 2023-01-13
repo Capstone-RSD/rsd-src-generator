@@ -31,9 +31,7 @@ message RSSPayload {
   DamageLevel dmg_lvl = 3;
   RepairPriority rpr_priotiry =4;
 
-}
-
-enum DamageLevel {
+  enum DamageLevel {
     // option allow_alias = true;
     LVL_UNSPECIFIED = 0;
     LVL_LOW = 1;
@@ -47,3 +45,4 @@ enum DamageLevel {
     PRIORITY_MED = 2;
     PRIORITY_HIGH = 3;
   }
+}
