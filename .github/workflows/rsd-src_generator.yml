@@ -71,7 +71,7 @@ jobs:
         run: |
               protoc --version
               cd protobuf/python
-              sudo python setup.py build --cpp_implementation
+              sudo python setup.py build 
               sudo python setup.py install              
 
       # Generate for python
