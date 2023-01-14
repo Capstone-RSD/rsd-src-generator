@@ -70,13 +70,11 @@ jobs:
               protoc --version
               ls -al
       - name: Build & install for dart
-        run: |
-              ls -al
+        run: |             
               dart pub global activate protoc_plugin
-              export PATH="$PATH":"$HOME/.pub-cache/bin"
-              cd $HOME/.pub-cache/bin/protoc_plugin 
-              dart pub get
-              dart compile exe bin/protoc_plugin.dart
+              ls -al
+              dart pub get protoc_plugin
+              dart compile exe protoc_plugin.dart
                       
        
 
