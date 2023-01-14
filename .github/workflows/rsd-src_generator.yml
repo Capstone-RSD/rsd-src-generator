@@ -33,6 +33,10 @@ jobs:
       # Setup Python
       - name: Setup Python
         uses: actions/setup-python@v4.3.1
+      
+      # Setup Dart
+      - name: Setup Dart
+        uses: cedx/setup-dart@v3.0.0
 
 #       # Setup Java
 #       - name: Setup Java JDK
@@ -65,7 +69,12 @@ jobs:
               sudo ldconfig
               protoc --version
               ls -al
-             
+      - name: Build & install for dart
+        run: |
+              ls -al
+              dart pub global activate protoc_plugin
+        
+       
 
       - name: Build & Install for Python
         run: |
