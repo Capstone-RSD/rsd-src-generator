@@ -74,7 +74,9 @@ jobs:
               ls -al
               dart pub global activate protoc_plugin
               export PATH="$PATH":"$HOME/.pub-cache/bin"
+              cd $HOME/.pub-cache/bin/protoc_plugin 
               dart pub get
+              dart compile exe bin/protoc_plugin.dart
                       
        
 
@@ -105,7 +107,7 @@ jobs:
         run: |
               mkdir -p protobuf-rsd-gen/dart-src
               ls -al
-              protoc --proto_path=${{github.workspace}} -I=${{github.workspace}}/api-common-protos --dart_out=protobuf-rsd-gen/dart-src rss_client.proto 
+              protoc --proto_path=${{github.workspace}} -I=${{github.workspace}}/api-common-protos --dart_out=protobuf-rsd-gen/dart-src rss_client.proto --plugin=protoc_plugin/bin/protoc-gen-dart
               
       # Upload java artifacts
       - name: Upload generated java artifacts
