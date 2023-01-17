@@ -34,9 +34,9 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4.3.1
       
-      # Setup Dart
-      - name: Setup Dart
-        uses: cedx/setup-dart@v3.0.0
+#       # Setup Dart
+#       - name: Setup Dart
+#         uses: cedx/setup-dart@v3.0.0
 
 #       # Setup Java
 #       - name: Setup Java JDK
@@ -69,12 +69,13 @@ jobs:
               sudo ldconfig
               protoc --version
               ls -al
-      - name: Build & install for dart
-        run: |             
-              dart pub global activate protoc_plugin
-              ls -al
-              dart pub get protoc_plugin
-              dart compile exe protoc_plugin.dart
+              
+#       - name: Build & install for dart
+#         run: |             
+#               dart pub global activate protoc_plugin
+#               ls -al
+#               dart pub get protoc_plugin
+#               dart compile exe protoc_plugin.dart
                       
        
 
@@ -101,11 +102,11 @@ jobs:
               protoc --proto_path=${{github.workspace}} -I=${{github.workspace}}/api-common-protos --java_out=protobuf-rsd-gen/java-src rss_client.proto
        
        # Generate for Dart using protobuf
-      - name: Generate Dart source code
-        run: |
-              mkdir -p protobuf-rsd-gen/dart-src
-              ls -al
-              protoc --proto_path=${{github.workspace}} -I=${{github.workspace}}/api-common-protos --dart_out=protobuf-rsd-gen/dart-src rss_client.proto --plugin=protoc-gen-dart
+#       - name: Generate Dart source code
+#         run: |
+#               mkdir -p protobuf-rsd-gen/dart-src
+#               ls -al
+#               protoc --proto_path=${{github.workspace}} -I=${{github.workspace}}/api-common-protos --dart_out=protobuf-rsd-gen/dart-src 
               
       # Upload java artifacts
       - name: Upload generated java artifacts
@@ -124,9 +125,9 @@ jobs:
                 ${{github.workspace}}/protobuf-rsd-gen/py-src
                 
       # Upload dart artifacts
-      - name: Upload generated dart artifacts
-        uses: actions/upload-artifact@v3.1.1
-        with:
-          name: rsd-dart-gen
-          path: |
-                ${{github.workspace}}/protobuf-rsd-gen/dart-src
+#       - name: Upload generated dart artifacts
+#         uses: actions/upload-artifact@v3.1.1
+#         with:
+#           name: rsd-dart-gen
+#           path: |
+#                 ${{github.workspace}}/protobuf-rsd-gen/dart-src
