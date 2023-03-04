@@ -29,10 +29,10 @@ message RSSPayload {
 // A class indicating the damage payload
 message DamagePayload{
   // class type of road damage. i.e. pothole,
-  string class =1;
+  string damage_class =1;
   // length dimension of the damage
-  int32 length=2;
+  int32 damage_length=2;
   // width dimension of the damage
-  int32 width=3;
+  int32 damage_width=3;
 }
 
