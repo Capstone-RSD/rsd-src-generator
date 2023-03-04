@@ -40,6 +40,13 @@ message Client {
    Use the repeated attribute instead  */
   map<string,BlobSrc> blob_map = 8 [deprecated=true];
 }
+/* RSS payload Structure */
+message RSSPayload {
+  Client client =1;
+  repeated DamagePayload damagePayload = 2 ; // List of all damage types detected
+//  repeated string surface_type = 3; // List of all surface types detected. E.g. Dry, Damp, Wet, Frost, Ice
+
+}
 
 /* Latitude and Longitude of the captured road surface damage */
 message DamageLocation{
