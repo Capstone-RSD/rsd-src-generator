@@ -5,8 +5,8 @@ package RSS;// RSS=Road Surface Status
 // Resource: https://github.com/protocolbuffers/protobuf/blob/main/examples/addressbook.proto
 
 // Imports
-import "google/protobuf/timestamp.proto";
-import "rss_cost_analysis.proto";
+//import "google/protobuf/timestamp.proto";
+import "rss_client.proto";
 
 // [START global_declaration]
 option optimize_for = SPEED; // Enabled by default
@@ -20,29 +20,19 @@ option java_package = "com.example.rss";
 // [END java_declaration]
 
 message RSSPayload {
-  // optional string name = 1;
-  // optional int32 id = 2;
-  // optional string email = 3;
-  // google.protobuf.Timestamp DateOfBirth = 4;
+  Client client =1;
+  repeated DamagePayload damagePayload = 2 ; // List of all damage types detected
+//  repeated string surface_type = 3; // List of all surface types detected. E.g. Dry, Damp, Wet, Frost, Ice
 
-
-  repeated string damage_type = 1; // List of all damage types detected
-  repeated string surface_type = 2; // List of all surface types detected. E.g. Dry, Damp, Wet, Frost, Ice
-  DamageLevel dmg_lvl = 3;
-  RepairPriority rpr_priotiry =4;
-
-  enum DamageLevel {
-    // option allow_alias = true;
-    LVL_UNSPECIFIED = 0;
-    LVL_LOW = 1;
-    LVL_MED = 2;
-    LVL_HEAVY = 3;
-  }
-
- enum RepairPriority {
-    PRIORITY_UNSPECIFIED = 0;
-    PRIORITY_LOW = 1;
-    PRIORITY_MED = 2;
-    PRIORITY_HIGH = 3;
-  }
 }
+
+// A class indicating the damage payload
+message DamagePayload{
+  // class type of road damage. i.e. pothole,
+  string class =1;
+  // length dimension of the damage
+  int32 length=2;
+  // width dimension of the damage
+  int32 width=3;
+}
+
