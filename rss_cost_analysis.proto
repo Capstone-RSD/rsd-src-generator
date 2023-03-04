@@ -46,7 +46,7 @@ message CostEstimationReport {
         double depth = 3;
     }
 
-    Client.DamageLocation location = 9;
+    //Client.DamageLocation location = 9;
 
     enum ReportFormat{
         NONE = 0;
